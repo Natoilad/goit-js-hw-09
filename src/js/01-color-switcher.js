@@ -13,7 +13,7 @@ let timerIdInterval = null;
 
 // Функції
 
-function randomHexColor() {
+function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
@@ -21,7 +21,7 @@ function startChangeBgColor() {
   btnStop.disabled = false;
   btnStart.disabled = true;
   timerIdInterval = setInterval(() => {
-    bodyEl.style.background = randomHexColor();
+    bodyEl.style.background = getRandomHexColor();
   }, 1000);
 }
 
