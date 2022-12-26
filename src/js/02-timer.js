@@ -36,7 +36,7 @@ flatpickr('#datetime-picker', options);
 function startTimer() {
   const intervalId = setInterval(() => {
     const differenceTime = setTime - Date.now();
-    if (differenceTime <= 0) {
+    if (differenceTime <= 500) {
       clearInterval(intervalId);
       return;
     }
