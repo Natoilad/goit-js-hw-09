@@ -16,7 +16,7 @@ const options = {
   minuteIncrement: 1,
   onClose(selectedDates) {
     setTime = selectedDates[0].getTime();
-    if (selectedDates[0].getTime() < Date.now()) {
+    if (setTime < Date.now()) {
       btnStart.disabled = true;
       dayElSpan.textContent = '00';
       hoursElSpan.textContent = '00';
