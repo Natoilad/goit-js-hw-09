@@ -15,8 +15,8 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    setTime = selectedDates[0].getTime();
-    if (setTime < Date.now()) {
+    // const setTime = setTimeFlat.selectedDates[0].getTime();
+    if (selectedDates[0] < Date.now()) {
       btnStart.disabled = true;
       dayElSpan.textContent = '00';
       hoursElSpan.textContent = '00';
@@ -29,28 +29,30 @@ const options = {
 };
 flatpickr('#datetime-picker', options);
 
+const setTimeFlat = new flatpickr('#datetime-picker', options);
+
 // Функції
 
 function startTimer() {
   const intervalId = setInterval(() => {
-    const differenceTime = setTime - Date.now();
+    const differenceTime = setTimeFlat.selectedDates[0].getTime() - Date.now();
     if (differenceTime <= 500) {
       clearInterval(intervalId);
       return;
     }
 
-    timeObj = convertMs(differenceTime);
+    const timeObj = convertMs(differenceTime);
     console.log(timeObj);
-    console.log(differenceTime);
+    // console.log(differenceTime);
     contentTimeLasted(addLeadingZero, timeObj);
   }, 1000);
 }
 
-function contentTimeLasted() {
-  dayElSpan.textContent = timeObj.days;
-  hoursElSpan.textContent = timeObj.hours;
-  minutesElSpan.textContent = timeObj.minutes;
-  secondsElSpan.textContent = timeObj.seconds;
+function contentTimeLasted(callback, { days, hours, minutes, seconds }) {
+  dayElSpan.textContent = days;
+  hoursElSpan.textContent = hours;
+  minutesElSpan.textContent = minutes;
+  secondsElSpan.textContent = seconds;
 }
 
 function addLeadingZero(value) {
