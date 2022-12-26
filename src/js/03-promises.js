@@ -23,9 +23,9 @@ function createWhenSubmit(e) {
   const onePromDelay = +inputNumberDelay.value;
   const stepProm = +inputNumberStep.value;
   const amountProm = +inputNumberAmount.value;
-  for (let i = 0; i <= amountProm; i += 1) {
-    const delay = onePromDelay + i * stepProm;
-    createPromise(i + 1, delay),
+  for (let i = 1; i <= amountProm; i += 1) {
+    let delay = onePromDelay + i * stepProm;
+    createPromise(i, delay),
       then(({ position, delay }) => {
         console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
       }).catch(({ position, delay }) => {
