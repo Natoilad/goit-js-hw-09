@@ -9,8 +9,6 @@ const btnStart = document.querySelector('[data-start]');
 btnStart.disabled = true;
 btnStart.addEventListener('click', startTimer);
 
-let setTime = {};
-
 const options = {
   enableTime: true,
   time_24hr: true,
