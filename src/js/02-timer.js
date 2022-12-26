@@ -42,6 +42,8 @@ function startTimer() {
     }
 
     timeObj = convertMs(differenceTime);
+    console.log(timeObj);
+    console.log(differenceTime);
     contentTimeLasted(addLeadingZero, timeObj);
   }, 1000);
 }
