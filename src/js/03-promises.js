@@ -4,6 +4,7 @@ const inputNumberDelay = document.querySelector(`input[name='delay']`);
 const inputNumberStep = document.querySelector(`input[name='step']`);
 const inputNumberAmount = document.querySelector(`input[name='amount']`);
 const buttonCreateProm = document.querySelector('button');
+const form = document.querySelector('.form');
 
 function createPromise(position, delay) {
   const promise = new Promise((resolve, reject) => {
@@ -24,9 +25,11 @@ buttonCreateProm.addEventListener('click', createWhenSubmit);
 
 function createWhenSubmit(e) {
   e.preventDefault();
+  // const form = e.currentTarget;
   const onePromDelay = +inputNumberDelay.value;
   const stepProm = +inputNumberStep.value;
   const amountProm = +inputNumberAmount.value;
+
   for (let i = 1; i < amountProm; i += 1) {
     let delay = onePromDelay + i * stepProm;
     createPromise(i, delay)
@@ -39,4 +42,5 @@ function createWhenSubmit(e) {
         console.log(`❌ Rejected promise ${position} in ${delay}ms`);
       });
   }
+  form.reset();
 }
