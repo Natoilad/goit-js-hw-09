@@ -30,7 +30,7 @@ function createWhenSubmit(e) {
   const stepProm = +inputNumberStep.value;
   const amountProm = +inputNumberAmount.value;
 
-  for (let i = 1; i < amountProm; i += 1) {
+  for (let i = 1; i <= amountProm; i += 1) {
     let delay = onePromDelay + i * stepProm;
     createPromise(i, delay)
       .then(({ position, delay }) => {
