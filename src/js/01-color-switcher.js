@@ -17,16 +17,19 @@ function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }
 
+function statusBtn(ok, off) {
+  btnStop.disabled = ok;
+  btnStart.disabled = off;
+}
+
 function startChangeBgColor() {
-  btnStop.disabled = false;
-  btnStart.disabled = true;
+  statusBtn(false, true);
   timerIdInterval = setInterval(() => {
     bodyEl.style.background = getRandomHexColor();
   }, 1000);
 }
 
 function stopChangeBgColor() {
-  btnStop.disabled = true;
-  btnStart.disabled = false;
+  statusBtn(true, false);
   clearInterval(timerIdInterval);
 }
