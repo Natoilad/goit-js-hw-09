@@ -14,15 +14,12 @@ const options = {
   time_24hr: true,
   defaultDate: new Date(),
   minuteIncrement: 1,
-  onClose(selectedDates) {
-    // const setTime = setTimeFlat.selectedDates[0].getTime();
-    if (selectedDates[0] < Date.now()) {
+  onClose([selectedDates]) {
+    if (selectedDates < Date.now()) {
       btnStart.disabled = true;
-      dayElSpan.textContent = '00';
-      hoursElSpan.textContent = '00';
-      minutesElSpan.textContent = '00';
-      secondsElSpan.textContent = '00';
-      return window.alert('Please choose a date in the future');
+      contentTimeLasted();
+
+      return alert('Please choose a date in the future');
     }
     btnStart.disabled = false;
   },
@@ -43,12 +40,16 @@ function startTimer() {
 
     const timeObj = convertMs(differenceTime);
     console.log(timeObj);
-    // console.log(differenceTime);
-    contentTimeLasted(addLeadingZero, timeObj);
+    contentTimeLasted(timeObj, addLeadingZero);
   }, 1000);
 }
 
-function contentTimeLasted(callback, { days, hours, minutes, seconds }) {
+function contentTimeLasted({
+  days = '00',
+  hours = '00',
+  minutes = '00',
+  seconds = '00',
+} = {}) {
   dayElSpan.textContent = days;
   hoursElSpan.textContent = hours;
   minutesElSpan.textContent = minutes;
