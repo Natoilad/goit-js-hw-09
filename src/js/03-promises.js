@@ -1,9 +1,9 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const inputNumberDelay = document.querySelector(`input[name='delay']`);
-const inputNumberStep = document.querySelector(`input[name='step']`);
-const inputNumberAmount = document.querySelector(`input[name='amount']`);
-const buttonCreateProm = document.querySelector('button');
+// const inputNumberDelay = document.querySelector(`input[name='delay']`);
+// const inputNumberStep = document.querySelector(`input[name='step']`);
+// const inputNumberAmount = document.querySelector(`input[name='amount']`);
+// const buttonCreateProm = document.querySelector('button');
 const form = document.querySelector('.form');
 
 function createPromise(position, delay) {
@@ -21,14 +21,16 @@ function createPromise(position, delay) {
   return promise;
 }
 
-buttonCreateProm.addEventListener('click', createWhenSubmit);
+form.addEventListener('submit', createWhenSubmit);
 
 function createWhenSubmit(e) {
   e.preventDefault();
-  // const form = e.currentTarget;
-  const onePromDelay = +inputNumberDelay.value;
-  const stepProm = +inputNumberStep.value;
-  const amountProm = +inputNumberAmount.value;
+  const {
+    elements: { delay, step, amount },
+  } = e.currentTarget;
+  const onePromDelay = Number(+delay.value);
+  const stepProm = Number(+step.value);
+  const amountProm = Number(+amount.value);
 
   for (let i = 1; i <= amountProm; i += 1) {
     let delay = onePromDelay + i * stepProm;
@@ -42,5 +44,5 @@ function createWhenSubmit(e) {
         console.log(`❌ Rejected promise ${position} in ${delay}ms`);
       });
   }
-  form.reset();
+  e.currentTarget.reset();
 }
